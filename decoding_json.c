@@ -124,7 +124,11 @@ static void print_literal(StringInfo s, Oid typid, char* outputstr) {
       else
         appendStringInfoString(s, "false");
       break;
-
+    case JSONOID:
+    case JSONBOID:
+        appendStringInfoString(s,outputstr);
+      break;
+      
     default:
       appendStringInfoChar(s, '"');
       for (valptr = outputstr; *valptr; valptr++) {
